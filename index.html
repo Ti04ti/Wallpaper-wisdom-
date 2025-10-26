@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KnowledgeWall - Retro Educational Wallpaper Generator</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Retro Styles -->
+  <link rel="stylesheet" href="retro-styles.css">
+
+  <style>
+    body {
+      background: var(--color-bg-dark-void);
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: var(--space-xl);
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 255, 65, 0.02) 2px,
+          rgba(0, 255, 65, 0.02) 4px
+        ),
+        linear-gradient(180deg, #0A0A0F 0%, #1A1A2E 50%, #0A0A0F 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        linear-gradient(var(--color-terminal-cyan) 2px, transparent 2px),
+        linear-gradient(90deg, var(--color-terminal-cyan) 2px, transparent 2px);
+      background-size: 50px 50px;
+      opacity: 0.05;
+      animation: grid-scroll 20s linear infinite;
+    }
+
+    @keyframes grid-scroll {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(50px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display-secondary);
+      font-size: clamp(48px, 8vw, 120px);
+      font-weight: 900;
+      color: var(--color-terminal-white);
+      margin-bottom: var(--space-md);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+
+      text-shadow:
+        8px 0 0 var(--color-chromatic-red),
+        -8px 0 0 var(--color-chromatic-cyan),
+        0 0 40px rgba(255, 255, 255, 0.3);
+
+      animation: glitch-chromatic 3s infinite;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-display-primary);
+      font-size: clamp(12px, 2vw, 20px);
+      font-weight: 900;
+      color: var(--color-terminal-green);
+      margin-bottom: var(--space-xl);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-description {
+      font-family: var(--font-body-primary);
+      font-size: clamp(16px, 2vw, 24px);
+      font-weight: 700;
+      color: var(--color-terminal-white);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto var(--space-xl);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-xl);
+    }
+
+    .cta-button {
+      font-family: var(--font-display-primary);
+      font-size: clamp(10px, 1.5vw, 16px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: var(--space-sm) var(--space-xl);
+      background: var(--color-neon-pink);
+      color: var(--color-terminal-white);
+      border: var(--border-width-thick) solid var(--color-terminal-white);
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.1s ease;
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .cta-button:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
+    }
+
+    .cta-button:active {
+      transform: translate(6px, 6px);
+      box-shadow: none;
+    }
+
+    .cta-button-secondary {
+      background: transparent;
+      border-color: var(--color-terminal-cyan);
+      color: var(--color-terminal-cyan);
+      box-shadow:
+        6px 6px 0 rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(0, 255, 255, 0.3);
+    }
+
+    .cta-button-secondary:hover {
+      background: var(--color-terminal-cyan);
+      color: #000;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-xl);
+    }
+
+    .feature-card {
+      background: var(--color-bg-deep-navy);
+      border: var(--border-width-chunky) solid var(--color-terminal-cyan);
+      padding: var(--space-lg);
+      box-shadow: 8px 8px 0 rgba(0, 255, 255, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 12px 12px 0 rgba(0, 255, 255, 0.3);
+    }
+
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .feature-title {
+      font-family: var(--font-display-secondary);
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--color-terminal-cyan);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+
+      text-shadow:
+        2px 0 0 var(--color-chromatic-red),
+        -2px 0 0 var(--color-chromatic-cyan);
+    }
+
+    .feature-description {
+      font-family: var(--font-body-primary);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-terminal-white);
+      line-height: 1.6;
+    }
+
+    .demo-links {
+      background: #000;
+      border-top: var(--border-width-mega) solid var(--color-neon-pink);
+      border-bottom: var(--border-width-mega) solid var(--color-neon-pink);
+      padding: var(--space-3xl) var(--space-xl);
+      text-align: center;
+    }
+
+    .demo-title {
+      font-family: var(--font-display-secondary);
+      font-size: clamp(32px, 5vw, 64px);
+      font-weight: 900;
+      color: var(--color-neon-pink);
+      margin-bottom: var(--space-xl);
+      text-transform: uppercase;
+
+      text-shadow:
+        4px 0 0 var(--color-chromatic-red),
+        -4px 0 0 var(--color-chromatic-cyan);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .demo-card {
+      background: var(--color-bg-deep-navy);
+      border: var(--border-width-thick) solid var(--color-terminal-cyan);
+      padding: var(--space-lg);
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .demo-card:hover {
+      border-color: var(--color-neon-pink);
+      box-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+    }
+
+    .demo-card h3 {
+      font-family: var(--font-display-secondary);
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--color-terminal-green);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+    }
+
+    .demo-card p {
+      font-family: var(--font-body-primary);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-terminal-white);
+      margin-bottom: var(--space-md);
+      line-height: 1.6;
+    }
+
+    .demo-card a {
+      font-family: var(--font-body-primary);
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--color-neon-pink);
+      text-decoration: none;
+      border-bottom: 3px solid var(--color-neon-pink);
+      padding-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .demo-card a:hover {
+      color: var(--color-terminal-cyan);
+      border-color: var(--color-terminal-cyan);
+      text-shadow: 0 0 10px currentColor;
+    }
+
+    .footer {
+      background: var(--color-bg-dark-void);
+      padding: var(--space-xl);
+      text-align: center;
+      border-top: var(--border-width-thick) solid var(--color-terminal-green);
+    }
+
+    .footer-text {
+      font-family: var(--font-display-primary);
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--color-terminal-green);
+      letter-spacing: 0.1em;
+    }
+
+    .tech-stack {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+
+    .tech-badge {
+      font-family: var(--font-body-primary);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 12px;
+      background: transparent;
+      border: 2px solid var(--color-terminal-cyan);
+      color: var(--color-terminal-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: var(--space-lg) var(--space-sm);
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+      }
+    }
+
+    .scanline-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.03),
+        transparent
+      );
+      pointer-events: none;
+      animation: scanline 8s linear infinite;
+      z-index: 9999;
+    }
+
+    @keyframes scanline {
+      0% { transform: translateY(-100px); }
+      100% { transform: translateY(100vh); }
+    }
+
+    .glitch-container {
+      position: relative;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scanline Effect -->
+  <div class="scanline-overlay"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-subtitle">▓▓▓ TRANSFORMING EDUCATION ▓▓▓</div>
+
+      <h1 class="hero-title">
+        KNOWLEDGE<br>WALL
+      </h1>
+
+      <p class="hero-description">
+        Transform your smartphone into a learning machine with retro-styled educational wallpapers.
+        Beautiful, bold, and packed with knowledge.
+      </p>
+
+      <div class="cta-buttons">
+        <a href="wallpaper-template-retro.html" class="cta-button">
+          ⚡ GENERATE WALLPAPER
+        </a>
+        <a href="retro-components-examples.html" class="cta-button cta-button-secondary">
+          🎨 VIEW COMPONENTS
+        </a>
+        <a href="retro-design-system.md" class="cta-button cta-button-secondary">
+          📖 READ DOCS
+        </a>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech-badge">■ HTML5</span>
+        <span class="tech-badge">■ CSS3</span>
+        <span class="tech-badge">■ CHROMATIC ABERRATION</span>
+        <span class="tech-badge">■ RETRO AESTHETICS</span>
+        <span class="tech-badge">■ WCAG AAA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section style="background: var(--color-bg-deep-navy); padding: var(--space-5xl) 0;">
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3 class="feature-title">RETRO DESIGN</h3>
+        <p class="feature-description">
+          Bold lines (3-10px), heavy typography (700+ weight), and chromatic aberration effects inspired by 80s CRT monitors and arcade cabinets.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🌈</div>
+        <h3 class="feature-title">7 THEMES</h3>
+        <p class="feature-description">
+          Dark Retro, Light, Synthwave, Terminal Green, Amber Monitor, Cyberpunk, and Arcade themes with customizable color schemes.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">CHROMATIC FX</h3>
+        <p class="feature-description">
+          RGB split effects with 4 intensity levels (subtle to extreme) for authentic vintage CRT monitor aesthetics.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3 class="feature-title">MOBILE OPTIMIZED</h3>
+        <p class="feature-description">
+          Perfect for phone wallpapers (1080x2340px) with safe zones ensuring content visibility on all devices.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">♿</div>
+        <h3 class="feature-title">ACCESSIBLE</h3>
+        <p class="feature-description">
+          WCAG AAA compliant with 7:1 contrast ratios, keyboard navigation, and screen reader support.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <h3 class="feature-title">SPECIAL EFFECTS</h3>
+        <p class="feature-description">
+          CRT flicker, scanlines, neon glow, glitch animations, and VHS tracking effects for maximum retro vibes.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Demo Links Section -->
+  <section class="demo-links">
+    <h2 class="demo-title">▓▓▓ EXPLORE THE SYSTEM ▓▓▓</h2>
+
+    <div class="demo-grid">
+
+      <div class="demo-card">
+        <h3>💎 WALLPAPER GENERATOR</h3>
+        <p>
+          Interactive wallpaper generator with live preview, theme switching, and educational content templates.
+          Optimized for mobile displays.
+        </p>
+        <a href="wallpaper-template-retro.html">LAUNCH GENERATOR →</a>
+      </div>
+
+      <div class="demo-card">
+        <h3>🎨 COMPONENT LIBRARY</h3>
+        <p>
+          Complete UI component showcase with live theme switching. Explore buttons, cards, forms,
+          typography, and special effects.
+        </p>
+        <a href="retro-components-examples.html">VIEW COMPONENTS →</a>
+      </div>
+
+      <div class="demo-card">
+        <h3>📚 DESIGN SYSTEM DOCS</h3>
+        <p>
+          Comprehensive documentation covering color systems, typography, borders, spacing,
+          chromatic aberration, and accessibility guidelines.
+        </p>
+        <a href="retro-design-system.md">READ DOCUMENTATION →</a>
+      </div>
+
+      <div class="demo-card">
+        <h3>🎯 THEME CONFIGURATION</h3>
+        <p>
+          Structured JSON configuration with theme definitions, typography tokens, color palettes,
+          and animation settings.
+        </p>
+        <a href="retro-theme-config.json">VIEW CONFIG →</a>
+      </div>
+
+      <div class="demo-card">
+        <h3>💅 CSS IMPLEMENTATION</h3>
+        <p>
+          Production-ready CSS with custom properties, component styles, special effects,
+          and responsive design patterns.
+        </p>
+        <a href="retro-styles.css">VIEW STYLESHEET →</a>
+      </div>
+
+      <div class="demo-card">
+        <h3>🚀 GITHUB REPO</h3>
+        <p>
+          View the source code, contribute to the project, report issues, and follow development
+          on GitHub.
+        </p>
+        <a href="https://github.com/Ti04ti/Wallpaper-wisdom-">VIEW ON GITHUB →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-text">
+      ▓▓▓ KNOWLEDGEWALL RETRO DESIGN SYSTEM v1.0.0 ▓▓▓<br>
+      <br>
+      BUILT WITH BOLD LINES, HEAVY TYPOGRAPHY & CHROMATIC ABERRATION<br>
+      <br>
+      🤖 GENERATED WITH CLAUDE CODE
+    </div>
+  </footer>
+
+  <script>
+    // Console Easter Egg
+    console.log('%c⚡ KNOWLEDGEWALL ⚡', 'font-family: monospace; font-size: 40px; font-weight: bold; color: #FF006E; text-shadow: 4px 0 0 #FF0044, -4px 0 0 #00FFFF;');
+    console.log('%cRetro Design System v1.0.0', 'font-family: monospace; font-size: 16px; color: #00FF41;');
+    console.log('%c\nFeatures:', 'font-family: monospace; font-size: 14px; color: #00FFFF;');
+    console.log('%c■ Bold lines (3-10px borders)\n■ Heavy typography (700+ weight)\n■ Chromatic aberration\n■ 7 theme variations\n■ WCAG AAA accessible\n■ Mobile optimized', 'font-family: monospace; font-size: 12px; color: #FFFFFF;');
+
+    // Keyboard shortcut hints
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        window.location.href = 'wallpaper-template-retro.html';
+      } else if (e.ctrlKey && e.key === 'd') {
+        e.preventDefault();
+        window.location.href = 'retro-design-system.md';
+      } else if (e.ctrlKey && e.key === 'c') {
+        e.preventDefault();
+        window.location.href = 'retro-components-examples.html';
+      }
+    });
+
+    // Add keyboard shortcuts hint to console
+    console.log('%c\nKeyboard Shortcuts:', 'font-family: monospace; font-size: 14px; color: #FF006E;');
+    console.log('%cCtrl+K - Wallpaper Generator\nCtrl+C - Component Library\nCtrl+D - Documentation', 'font-family: monospace; font-size: 12px; color: #00FFFF;');
+  </script>
+
+</body>
+</html>
