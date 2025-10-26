@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KnowledgeWall - Retro Design System Components</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;600;700&family=VT323&family=Bungee&display=swap" rel="stylesheet">
+
+  <!-- Retro Styles -->
+  <link rel="stylesheet" href="retro-styles.css">
+
+  <style>
+    /* Demo Page Specific Styles */
+    .demo-section {
+      margin-bottom: var(--space-5xl);
+      padding: var(--space-xl);
+      background: var(--theme-surface);
+      border: var(--border-width-chunky) solid var(--theme-border);
+    }
+
+    .demo-section-title {
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--border-width-thick) solid var(--theme-accent);
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    @media (min-width: 768px) {
+      .demo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .component-example {
+      padding: var(--space-md);
+      background: var(--theme-bg);
+      border: var(--border-width-medium) dashed var(--theme-border);
+    }
+
+    .component-label {
+      font-family: var(--font-body-primary);
+      font-size: 12px;
+      font-weight: var(--font-weight-black);
+      color: var(--theme-text-secondary);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .theme-switcher {
+      position: fixed;
+      top: var(--space-md);
+      right: var(--space-md);
+      z-index: 1000;
+      display: flex;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .theme-button {
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-body-primary);
+      font-size: 10px;
+      font-weight: var(--font-weight-black);
+      text-transform: uppercase;
+      border: 3px solid var(--theme-border);
+      background: var(--theme-surface);
+      color: var(--theme-text);
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+
+    .theme-button:hover {
+      background: var(--theme-accent);
+      color: var(--theme-text);
+    }
+
+    .theme-button.active {
+      background: var(--theme-accent);
+      color: var(--theme-text);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <button class="theme-button active" data-theme="dark-retro">DARK</button>
+    <button class="theme-button" data-theme="light-retro">LIGHT</button>
+    <button class="theme-button" data-theme="synthwave">SYNTH</button>
+    <button class="theme-button" data-theme="terminal-green">TERM</button>
+    <button class="theme-button" data-theme="amber-monitor">AMBER</button>
+  </div>
+
+  <!-- CRT Effect Overlay -->
+  <div class="scanline-overlay"></div>
+
+  <div class="retro-container scanlines-background">
+
+    <!-- Header -->
+    <header class="retro-section">
+      <h1 class="chromatic-text-heavy text-center">
+        KNOWLEDGEWALL
+      </h1>
+      <p class="text-center text-secondary text-bold mb-md">
+        RETRO DESIGN SYSTEM COMPONENT LIBRARY
+      </p>
+      <hr class="retro-divider-gradient">
+    </header>
+
+    <!-- ========================================================================
+         TYPOGRAPHY EXAMPLES
+         ===================================================================== -->
+    <section class="demo-section">
+      <h2 class="demo-section-title chromatic-text-standard">
+        01. TYPOGRAPHY
+      </h2>
+
+      <div class="demo-grid">
+        <!-- Headings -->
+        <div class="component-example">
+          <div class="component-label">■ Headings with Chromatic Aberration</div>
+          <h1>H1 HEADING</h1>
+          <h2>H2 HEADING</h2>
+          <h3>H3 HEADING</h3>
+          <h4>H4 HEADING</h4>
+        </div>
+
+        <!-- Body Text -->
+        <div class="component-example">
+          <div class="component-label">■ Body Text (Bold Default)</div>
+          <p>This is regular paragraph text. All body text uses bold weight (700) for maximum readability and retro aesthetic.</p>
+          <p><strong>Strong text</strong> uses black weight (900) and accent color.</p>
+          <p><em>Emphasized text</em> uses secondary color for distinction.</p>
+        </div>
+
+        <!-- Text Effects -->
+        <div class="component-example">
+          <div class="component-label">■ Chromatic Text Effects</div>
+          <p class="chromatic-text-subtle">SUBTLE CHROMATIC ABERRATION</p>
+          <p class="chromatic-text-standard">STANDARD CHROMATIC ABERRATION</p>
+          <p class="chromatic-text-heavy">HEAVY CHROMATIC ABERRATION</p>
+          <p class="chromatic-text-extreme">EXTREME CHROMATIC ABERRATION</p>
+        </div>
+
+        <!-- Neon Text -->
+        <div class="component-example">
+          <div class="component-label">■ Neon Glow Effect</div>
+          <h2 class="neon-text">NEON GLOW TEXT</h2>
+          <p class="text-secondary">Pulsating neon effect with animated glow</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         BUTTONS
+         ===================================================================== -->
+    <section class="demo-section">
+      <h2 class="demo-section-title chromatic-text-standard">
+        02. BUTTONS
+      </h2>
+
+      <div class="demo-grid">
+        <!-- Standard Retro Button -->
+        <div class="component-example">
+          <div class="component-label">■ Standard Retro Button</div>
+          <button class="retro-button">GENERATE WALLPAPER</button>
+          <p class="text-small text-secondary mt-sm">Hard shadow with hover/active states</p>
+        </div>
+
+        <!-- Chromatic Button -->
+        <div class="component-example">
+          <div class="component-label">■ Chromatic Aberration Button</div>
+          <button class="retro-button-chromatic">CHROMATIC BUTTON</button>
+          <p class="text-small text-secondary mt-sm">RGB split effect on text and borders</p>
+        </div>
+
+        <!-- Neon Button -->
+        <div class="component-example">
+          <div class="component-label">■ Neon Outline Button</div>
+          <button class="retro-button-neon">NEON BUTTON</button>
+          <p class="text-small text-secondary mt-sm">Glowing outline with hover fill</p>
+        </div>
+
+        <!-- Button Group -->
+        <div class="component-example">
+          <div class="component-label">■ Button Group</div>
+          <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
+            <button class="retro-button">ACCEPT</button>
+            <button class="retro-button">CANCEL</button>
+            <button class="retro-button">RETRY</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         CARDS
+         ===================================================================== -->
+    <section class="demo-section">
+      <h2 class="demo-section-title chromatic-text-standard">
+        03. CARDS
+      </h2>
+
+      <div class="demo-grid">
+        <!-- Standard Card -->
+        <div class="component-example">
+          <div class="component-label">■ Standard Retro Card</div>
+          <div class="retro-card">
+            <div class="retro-card-header">PHYSICS</div>
+            <div class="retro-card-body">
+              <p>Quantum mechanics is the branch of physics that describes the behavior of matter and energy at atomic and subatomic scales.</p>
+            </div>
+            <div class="retro-card-footer">
+              ► DIFFICULTY: ADVANCED
+            </div>
+          </div>
+        </div>
+
+        <!-- Chromatic Card -->
+        <div class="component-example">
+          <div class="component-label">■ Chromatic Aberration Card</div>
+          <div class="retro-card chromatic-box-heavy">
+            <h3 class="chromatic-text-standard mb-sm">SPACE EXPLORATION</h3>
+            <p>The Voyager 1 spacecraft is the farthest human-made object from Earth, traveling at 38,000 mph through interstellar space.</p>
+            <p class="text-secondary mt-sm">▓▓▓ LAUNCHED: 1977</p>
+          </div>
+        </div>
+
+        <!-- Nested Card -->
+        <div class="component-example">
+          <div class="component-label">■ Nested Elements Card</div>
+          <div class="retro-card">
+            <div class="retro-card-header">MATHEMATICS</div>
+            <div class="retro-card-body">
+              <h4>Pythagorean Theorem</h4>
+              <code>a² + b² = c²</code>
+              <p class="mt-sm">In a right triangle, the square of the hypotenuse equals the sum of squares of the other two sides.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="component-example">
+          <div class="component-label">■ Info Card with Frame</div>
+          <div class="retro-frame">
+            <h4 class="text-accent mb-sm">⚡ DID YOU KNOW?</h4>
+            <p>The speed of light in a vacuum is exactly 299,792,458 meters per second, making it the universe's ultimate speed limit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         FORM INPUTS
+         ===================================================================== -->
+    <section class="demo-section">
+      <h2 class="demo-section-title chromatic-text-standard">
+        04. FORM INPUTS
+      </h2>
+
+      <div class="demo-grid">
+        <!-- Text Input -->
+        <div class="component-example">
+          <div class="component-label">■ Text Input</div>
+          <label for="topic-input" class="text-bold mb-xs block">SELECT TOPIC:</label>
+          <input
+            type="text"
+            id="topic-input"
+            class="retro-input"
+            placeholder="Enter topic name..."
+            value="Quantum Physics"
+          >
+        </div>
+
+        <!-- Textarea -->
+        <div class="component-example">
+          <div class="component-label">■ Textarea</div>
+          <label for="custom-request" class="text-bold mb-xs block">CUSTOM REQUEST:</label>
+          <textarea
+            id="custom-request"
+            class="retro-textarea"
+            placeholder="Describe your topic..."
+          >Advanced quantum mechanics concepts including wave-particle duality and Heisenberg uncertainty principle.</textarea>
+        </div>
+
+        <!-- Select Dropdown -->
+        <div class="component-example">
+          <div class="component-label">■ Select Dropdown</div>
+          <label for="category-select" class="text-bold mb-xs block">CATEGORY:</label>
+          <select id="category-select" class="retro-select">
+            <option>Physics</option>
+            <option>Chemistry</option>
+            <option>Mathematics</option>
+            <option>Space</option>
+            <option>Computer Science</option>
+          </select>
+        </div>
+
+        <!-- Form Example -->
+        <div class="component-example">
+          <div class="component-label">■ Complete Form</div>
+          <form>
+            <label for="wallpaper-title" class="text-bold mb-xs block">TITLE:</label>
+            <input type="text" id="wallpaper-title" class="retro-input mb-sm" value="Daily Knowledge">
+
+            <label class="text-bold mb-xs block">DIFFICULTY:</label>
+            <div style="display: flex; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+              <button type="button" class="retro-button">EASY</button>
+              <button type="button" class="retro-button">MEDIUM</button>
+              <button type="button" class="retro-button">HARD</button>
+            </div>
+
+            <button type="submit" class="retro-button-neon">SUBMIT</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         BORDERS & DIVIDERS
+         ===================================================================== -->
+    <section class="demo-section">
+      <h2 class="demo-section-title chromatic-text-standard">
+        05. BORDERS & DIVIDERS
+      </h2>
+
+      <div class="component-example">
+        <div class="component-label">■ Horizontal Dividers</div>
+
+        <p class="text-bold">Standard Divider (4px)</p>
+        <hr class="retro-divider-horizontal">
+
+        <p class="text-bold">Thick Divider (5px)</p>
+        <hr class="retro-divider-horizontal-thick">
+
+        <p class="text-bold">Gradient Divider</p>
+        <hr class="retro-divider-gradient">
+
+        <p class="text-bold">Dashed Divider</p>
+        <hr class="retro-divider-dashed">
+      </div>
+
+      <div class="demo-grid mt-lg">
+        <div class="component-example border-thick">
+          <div class="component-label">■ Border Thick (4px)</div>
+          <p>Standard thick border</p>
+        </div>
+
+        <div class="component-example border-chunky">
+          <div class="component-label">■ Border Chunky (5px)</div>
+          <p>Extra chunky border</p>
+        </div>
+
+        <div class="component-example border-mega">
+          <div class="component-label">■ Border Mega (6px)</div>
+          <p>Mega thick border</p>
+        </div>
+
+        <div class="component-example border-ultra">
+          <div class="component-label">■ Border Ultra (8px)</div>
+          <p>Ultra thick border</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SPECIAL EFFECTS
+         ===================================================================== -->
+    <section class="demo-section">
+      <h2 class="demo-section-title chromatic-text-standard">
+        06. SPECIAL EFFECTS
+      </h2>
+
+      <div class="demo-grid">
+        <!-- CRT Effect -->
+        <div class="component-example crt-effect" style="background: #000; padding: var(--space-lg);">
+          <div class="component-label text-terminal-green">■ CRT Screen Effect</div>
+          <h3 class="text-terminal-green">SYSTEM ONLINE</h3>
+          <p class="text-terminal-green">Simulated CRT monitor with scanlines and flicker</p>
+        </div>
+
+        <!-- Glitch Effect -->
+        <div class="component-example">
+          <div class="component-label">■ Glitch Effect</div>
+          <h2 class="glitch-effect text-accent">GLITCHING TEXT</h2>
+          <p class="text-secondary">Position glitch animation</p>
+        </div>
+
+        <!-- Chromatic Glitch -->
+        <div class="component-example">
+          <div class="component-label">■ Chromatic Glitch</div>
+          <h2 class="chromatic-glitch">RGB SPLIT GLITCH</h2>
+          <p class="text-secondary">Animated chromatic aberration</p>
+        </div>
+
+        <!-- Grid Background -->
+        <div class="component-example grid-background" style="padding: var(--space-xl);">
+          <div class="component-label">■ Grid Background</div>
+          <h3 class="text-accent">CYBER GRID</h3>
+          <p>Background grid pattern overlay</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         LAYOUT EXAMPLES
+         ===================================================================== -->
+    <section class="demo-section">
+      <h2 class="demo-section-title chromatic-text-standard">
+        07. LAYOUT EXAMPLES
+      </h2>
+
+      <!-- Terminal Layout -->
+      <div class="component-example mb-lg" style="background: #000; padding: 0;">
+        <div class="component-label" style="padding: var(--space-sm);">■ Terminal Layout</div>
+
+        <div style="border: 8px double var(--color-terminal-cyan); background: #0A0A0F;">
+          <!-- Header -->
+          <div style="background: #000; border-bottom: 6px solid var(--color-neon-pink); padding: 24px;">
+            <h2 class="chromatic-text-heavy text-center" style="margin: 0; color: #FFF;">
+              ▓▓▓ KNOWLEDGE TERMINAL v2.0 ▓▓▓
+            </h2>
+          </div>
+
+          <!-- Content -->
+          <div style="padding: 32px 24px;">
+            <p class="text-terminal-green text-bold">&gt; TOPIC: QUANTUM PHYSICS</p>
+            <p class="text-terminal-green text-bold">&gt; LEVEL: ADVANCED</p>
+
+            <div style="border: 4px solid var(--color-terminal-cyan); padding: 16px; margin: 24px 0; background: rgba(0, 255, 255, 0.05);">
+              <h3 class="text-terminal-cyan" style="margin: 0 0 16px 0;">WAVE-PARTICLE DUALITY</h3>
+              <p class="text-terminal-white">Light exhibits both wave and particle properties depending on how it is observed.</p>
+            </div>
+
+            <div style="border-left: 4px solid var(--color-neon-pink); padding-left: 16px; margin: 16px 0;">
+              <p class="text-terminal-white"><strong class="text-neon-pink">■</strong> Double-slit experiment demonstrates interference patterns</p>
+              <p class="text-terminal-white"><strong class="text-neon-pink">■</strong> Photons behave as waves or particles</p>
+              <p class="text-terminal-white"><strong class="text-neon-pink">■</strong> Observation affects quantum states</p>
+            </div>
+
+            <div style="background: rgba(0, 255, 65, 0.1); border: 3px solid var(--color-terminal-green); padding: 16px; margin-top: 24px;">
+              <code class="text-terminal-green" style="font-size: 16px; font-weight: 700; border: none; background: transparent; padding: 0;">
+                E = hf<br>
+                where h = 6.626 × 10⁻³⁴ J·s
+              </code>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div style="background: #000; border-top: 6px solid var(--color-terminal-cyan); padding: 16px 24px; text-align: center;">
+            <p class="text-terminal-green" style="font-family: var(--font-display-primary); font-size: 10px; margin: 0;">
+              ▓▓▓ KNOWLEDGEWALL.APP ▓▓▓
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arcade Layout -->
+      <div class="component-example" style="background: #000055; padding: 0;">
+        <div class="component-label" style="padding: var(--space-sm);">■ Arcade Layout</div>
+
+        <div style="border: 10px double var(--color-acid-yellow); background: #000033;">
+          <!-- Header -->
+          <div style="background: var(--color-acid-yellow); color: #000033; padding: 24px; text-align: center; border-bottom: 6px solid #000;">
+            <h2 style="margin: 0; font-family: var(--font-accent-chunky); font-size: 32px; letter-spacing: 0.1em;">
+              ★ ★ ★ KNOWLEDGE ARCADE ★ ★ ★
+            </h2>
+          </div>
+
+          <!-- Level Indicator -->
+          <div style="background: #FF00FF; padding: 16px; text-align: center;">
+            <h3 style="margin: 0; color: #000; font-family: var(--font-display-secondary); font-size: 24px;">
+              ANCIENT CIVILIZATIONS - LEVEL 1
+            </h3>
+          </div>
+
+          <!-- Content -->
+          <div style="padding: 32px 24px;">
+            <div style="border: 5px solid var(--color-terminal-cyan); background: rgba(0, 255, 255, 0.1); padding: 20px; margin-bottom: 24px;">
+              <h3 class="text-terminal-cyan" style="margin: 0 0 16px 0; font-size: 28px;">THE GREAT PYRAMID OF GIZA</h3>
+            </div>
+
+            <div style="margin-left: 16px;">
+              <p class="text-acid-yellow text-bold"><span style="color: var(--color-terminal-cyan); font-size: 20px;">■</span> Built around 2560 BC</p>
+              <p class="text-acid-yellow text-bold"><span style="color: var(--color-terminal-cyan); font-size: 20px;">■</span> 2.3 million stone blocks</p>
+              <p class="text-acid-yellow text-bold"><span style="color: var(--color-terminal-cyan); font-size: 20px;">■</span> 146.5 meters tall (originally)</p>
+              <p class="text-acid-yellow text-bold"><span style="color: var(--color-terminal-cyan); font-size: 20px;">■</span> Aligned to true north</p>
+            </div>
+          </div>
+
+          <!-- Score Bar -->
+          <div style="background: #FF00FF; padding: 12px 24px;">
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-display-primary); font-size: 12px; color: #000;">
+              <span>SCORE: 10000</span>
+              <span>LEVEL: 1</span>
+              <span>LIVES: ♥♥♥</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         COLOR PALETTE
+         ===================================================================== -->
+    <section class="demo-section">
+      <h2 class="demo-section-title chromatic-text-standard">
+        08. COLOR PALETTE
+      </h2>
+
+      <div class="component-label mb-sm">■ Terminal Colors</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-sm); margin-bottom: var(--space-lg);">
+        <div style="background: var(--color-terminal-green); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #000; font-weight: 900;">GREEN</span><br>
+          <code style="color: #000; font-size: 10px; background: transparent; border: none; padding: 0;">#00FF41</code>
+        </div>
+        <div style="background: var(--color-terminal-amber); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #000; font-weight: 900;">AMBER</span><br>
+          <code style="color: #000; font-size: 10px; background: transparent; border: none; padding: 0;">#FFBB00</code>
+        </div>
+        <div style="background: var(--color-terminal-cyan); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #000; font-weight: 900;">CYAN</span><br>
+          <code style="color: #000; font-size: 10px; background: transparent; border: none; padding: 0;">#00FFFF</code>
+        </div>
+        <div style="background: var(--color-terminal-magenta); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #FFF; font-weight: 900;">MAGENTA</span><br>
+          <code style="color: #FFF; font-size: 10px; background: transparent; border: none; padding: 0;">#FF00FF</code>
+        </div>
+      </div>
+
+      <div class="component-label mb-sm">■ Accent Colors</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-sm);">
+        <div style="background: var(--color-neon-pink); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #FFF; font-weight: 900;">NEON PINK</span><br>
+          <code style="color: #FFF; font-size: 10px; background: transparent; border: none; padding: 0;">#FF006E</code>
+        </div>
+        <div style="background: var(--color-electric-blue); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #FFF; font-weight: 900;">ELECTRIC BLUE</span><br>
+          <code style="color: #FFF; font-size: 10px; background: transparent; border: none; padding: 0;">#0080FF</code>
+        </div>
+        <div style="background: var(--color-laser-red); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #FFF; font-weight: 900;">LASER RED</span><br>
+          <code style="color: #FFF; font-size: 10px; background: transparent; border: none; padding: 0;">#FF0033</code>
+        </div>
+        <div style="background: var(--color-acid-yellow); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #000; font-weight: 900;">ACID YELLOW</span><br>
+          <code style="color: #000; font-size: 10px; background: transparent; border: none; padding: 0;">#FFFF00</code>
+        </div>
+        <div style="background: var(--color-retro-orange); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #FFF; font-weight: 900;">RETRO ORANGE</span><br>
+          <code style="color: #FFF; font-size: 10px; background: transparent; border: none; padding: 0;">#FF6F00</code>
+        </div>
+        <div style="background: var(--color-synth-purple); padding: var(--space-md); border: 3px solid #000;">
+          <span style="color: #FFF; font-weight: 900;">SYNTH PURPLE</span><br>
+          <code style="color: #FFF; font-size: 10px; background: transparent; border: none; padding: 0;">#B942FF</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="retro-section text-center">
+      <hr class="retro-divider-gradient mb-xl">
+      <h2 class="chromatic-text-heavy mb-md">
+        KNOWLEDGEWALL
+      </h2>
+      <p class="text-secondary text-bold mb-sm">RETRO DESIGN SYSTEM v1.0.0</p>
+      <p class="text-small">Built with bold lines, heavy typography & chromatic aberration</p>
+      <p class="text-small text-accent mt-sm">▓▓▓ POWERED BY RETRO AESTHETICS ▓▓▓</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Theme Switcher
+    const themeButtons = document.querySelectorAll('.theme-button');
+    const html = document.documentElement;
+
+    themeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const theme = button.getAttribute('data-theme');
+
+        // Update active state
+        themeButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Apply theme
+        html.setAttribute('data-theme', theme);
+
+        // Save preference
+        localStorage.setItem('knowledgewall-theme', theme);
+      });
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('knowledgewall-theme');
+    if (savedTheme) {
+      html.setAttribute('data-theme', savedTheme);
+      themeButtons.forEach(btn => {
+        if (btn.getAttribute('data-theme') === savedTheme) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // Konami Code Easter Egg (enables extreme glitch mode)
+    let konamiCode = [];
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+    document.addEventListener('keydown', (e) => {
+      konamiCode.push(e.key);
+      konamiCode = konamiCode.slice(-10);
+
+      if (konamiCode.join(',') === konamiSequence.join(',')) {
+        document.body.classList.add('glitch-effect');
+        document.querySelectorAll('h1, h2, h3').forEach(el => {
+          el.classList.add('chromatic-glitch');
+        });
+        alert('⚡ GLITCH MODE ACTIVATED! ⚡');
+      }
+    });
+  </script>
+
+</body>
+</html>
